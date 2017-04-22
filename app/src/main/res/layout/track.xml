@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn_shape"
-            android:text="开始拍摄！"/>
+            android:text="@string/startCamera"/>
 
     </LinearLayout>
 
