@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FaceRecognition</string>
+    <string name="trackIntroduction">人像跟踪\n\t\t\t是指利用人像捕获技术，当指定的人像在\n摄像头拍摄的范围内移动时自动地对其进行跟\n踪。\n\t\t\t现在请将摄像头对准人，并开启摄像头，我\n们将能够对人像进行跟踪。</string>
+</resources>
