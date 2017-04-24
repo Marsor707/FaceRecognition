@@ -41,6 +41,7 @@
         android:numColumns="3"
         android:horizontalSpacing="1dp"
         android:verticalSpacing="1dp"
+        android:stretchMode="columnWidth"
         />
 
     <LinearLayout
