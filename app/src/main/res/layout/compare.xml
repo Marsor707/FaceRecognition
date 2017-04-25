@@ -21,18 +21,13 @@
         android:background="#ffffff"
         android:gravity="center"
         android:orientation="vertical">
-        <Button
+
+        <ImageButton
             android:id="@+id/addPhoto1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/addphoto"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/addPhoto"
-            android:textSize="20dp"/>
+            android:background="@mipmap/addphoto_text"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -47,18 +42,12 @@
         android:background="#ffffff"
         android:gravity="center"
         android:orientation="vertical">
-        <Button
+
+        <ImageButton
             android:id="@+id/addPhoto2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/addphoto"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/addPhoto"
-            android:textSize="20dp"/>
+            android:background="@mipmap/addphoto_text"/>
     </LinearLayout>
 
     <LinearLayout

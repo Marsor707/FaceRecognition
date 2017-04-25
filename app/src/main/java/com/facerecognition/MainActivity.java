@@ -1,9 +1,13 @@
 package com.facerecognition;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.hardware.Camera;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Surface;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -16,7 +20,6 @@ import java.util.Arrays;
 
 import utils.GlideImageLoader;
 import utils.GridViewAdapter;
-import utils.SizeUtil;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
@@ -33,8 +36,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        Log.i(TAG, "onCreate: "+ SizeUtil.getDeviceHeight(MainActivity.this));
-        Log.i(TAG, "onCreate: "+ SizeUtil.getDeviceWidth(MainActivity.this));
+        setCameraDisplayOrientation(MainActivity.this,0,switchCamera());
     }
 
     private void init(){
@@ -77,5 +79,47 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
             default:break;
         }
+    }
+
+    private Camera switchCamera(){
+        int numberOfCameras=0;
+        numberOfCameras=Camera.getNumberOfCameras();
+        if(numberOfCameras>1){
+            Log.i(TAG, "switchCamera: 打开前置摄像头");
+            return Camera.open(1);
+        }
+        Log.i(TAG, "switchCamera: 打开后置摄像头");
+        return Camera.open();
+    }
+
+    private static void setCameraDisplayOrientation (Activity activity, int cameraId, android.hardware.Camera camera) {
+        android.hardware.Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
+        android.hardware.Camera.getCameraInfo (cameraId , info);
+        int rotation = activity.getWindowManager ().getDefaultDisplay ().getRotation ();
+        int degrees = 0;
+        switch (rotation) {
+            case Surface.ROTATION_0:
+                degrees = 0;
+                break;
+            case Surface.ROTATION_90:
+                degrees = 90;
+                break;
+            case Surface.ROTATION_180:
+                degrees = 180;
+                break;
+            case Surface.ROTATION_270:
+                degrees = 270;
+                break;
+        }
+        int result;
+        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            result = (info.orientation + degrees) % 360;
+            result = (360 - result) % 360;   // compensate the mirror
+        } else {
+            // back-facing
+            result = ( info.orientation - degrees + 360) % 360;
+        }
+        Log.i(TAG, "setCameraDisplayOrientation: 调整了摄像头方向"+result);
+        camera.setDisplayOrientation (result);
     }
 }
