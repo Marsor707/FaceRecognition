@@ -1,10 +1,12 @@
 package com.facerecognition;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Surface;
@@ -15,6 +17,9 @@ import android.widget.GridView;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.youth.banner.Banner;
+import com.zhy.m.permission.MPermissions;
+import com.zhy.m.permission.PermissionDenied;
+import com.zhy.m.permission.PermissionGrant;
 
 import java.util.Arrays;
 
@@ -28,6 +33,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private BottomNavigationBar bottomNavigationBar;
     private GridViewAdapter adapter;
     private static final String TAG="MainActivity";
+    private static final int REQUEST_CODE = 0;
+    private static final String[] permissions={
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS};
     private static Integer[] bannerImages={R.mipmap.banner1,R.mipmap.banner2,R.mipmap.banner3,R.mipmap.banner4};
     private static Integer[] gridImages={R.mipmap.track,R.mipmap.compare,R.mipmap.mode,R.mipmap.detect,R.mipmap.capture,R.mipmap.search};
     private static String[] gridTexts={"人像跟踪","人脸比对","人像建模","活体检测","人脸捕获","人脸搜索"};
@@ -37,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         init();
         setCameraDisplayOrientation(MainActivity.this,0,switchCamera());
+    }
+
+    @Override
+    protected void onResume() {
+        MPermissions.requestPermissions(MainActivity.this, REQUEST_CODE, permissions);
+        super.onResume();
     }
 
     private void init(){
@@ -90,6 +107,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         Log.i(TAG, "switchCamera: 打开后置摄像头");
         return Camera.open();
+    }
+
+    //处理权限回调
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        MPermissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    //授权成功
+    @PermissionGrant(REQUEST_CODE)
+    public void permissionSuccess() {
+        Log.i(TAG, "permissionSuccess: 授权成功");
+    }
+
+    //授权失败
+    @PermissionDenied(REQUEST_CODE)
+    public void permissionFail() {
+        Log.i(TAG, "permissionFail: 授权失败");
     }
 
     private static void setCameraDisplayOrientation (Activity activity, int cameraId, android.hardware.Camera camera) {
