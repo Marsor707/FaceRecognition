@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
@@ -26,9 +29,14 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 import interfaces.LoaderCallBack;
 import utils.FaceUtil;
+import youtu.Youtu;
+
 
 /**
  * Created by Seven on 2017/4/22.
@@ -39,6 +47,9 @@ public class CompareActivity extends AppCompatActivity implements View.OnClickLi
     private ImageButton addPhoto2;
     private Button compare;
     private Bitmap myBitMap1,myBitMap2;
+    private static final String APP_ID="10081316";
+    private static final String SECRET_ID="AKIDlqLgq4VynWnwufxRYqDsQqLhr8GEqQel";
+    private static final String SECRET_KEY="Ed5MXcWHrGoG3hAoS0NZcT9d0WRDRlt3";
     private float mRelativeFaceSize=0.2f;
     private int mAbsoluteFaceSize1=0;
     private int mAbsoluteFaceSize2=0;
@@ -61,6 +72,7 @@ public class CompareActivity extends AppCompatActivity implements View.OnClickLi
         addPhoto1.setOnClickListener(this);
         addPhoto2.setOnClickListener(this);
         compare.setOnClickListener(this);
+
     }
 
     @Override
@@ -82,47 +94,77 @@ public class CompareActivity extends AppCompatActivity implements View.OnClickLi
             }
             case R.id.compare:{
                 if(myBitMap1!=null&&myBitMap2!=null){
-                    Mat rgbMat1=new Mat();
-                    Mat rgbMat2=new Mat();
-                    Utils.bitmapToMat(myBitMap1,rgbMat1);
-                    Utils.bitmapToMat(myBitMap2,rgbMat2);
-                    Mat grayMat1=new Mat();
-                    Mat grayMat2=new Mat();
-                    Imgproc.cvtColor(rgbMat1,grayMat1,Imgproc.COLOR_RGB2GRAY);
-                    Imgproc.cvtColor(rgbMat2,grayMat2,Imgproc.COLOR_RGB2GRAY);
-                    if(mAbsoluteFaceSize1==0){
-                        int height=grayMat1.rows();
-                        if(Math.round(height*mRelativeFaceSize)>0){
-                            mAbsoluteFaceSize1=Math.round(height*mRelativeFaceSize);
+//                    Mat rgbMat1=new Mat();
+//                    Mat rgbMat2=new Mat();
+//                    Utils.bitmapToMat(myBitMap1,rgbMat1);
+//                    Utils.bitmapToMat(myBitMap2,rgbMat2);
+//                    Mat grayMat1=new Mat();
+//                    Mat grayMat2=new Mat();
+//                    Imgproc.cvtColor(rgbMat1,grayMat1,Imgproc.COLOR_RGB2GRAY);
+//                    Imgproc.cvtColor(rgbMat2,grayMat2,Imgproc.COLOR_RGB2GRAY);
+//                    if(mAbsoluteFaceSize1==0){
+//                        int height=grayMat1.rows();
+//                        if(Math.round(height*mRelativeFaceSize)>0){
+//                            mAbsoluteFaceSize1=Math.round(height*mRelativeFaceSize);
+//                        }
+//                    }
+//                    if(mAbsoluteFaceSize2==0){
+//                        int height=grayMat1.rows();
+//                        if(Math.round(height*mRelativeFaceSize)>0){
+//                            mAbsoluteFaceSize2=Math.round(height*mRelativeFaceSize);
+//                        }
+//                    }
+//                    if(mJavaDetection!=null){
+//                        MatOfRect faces1=new MatOfRect();
+//                        MatOfRect faces2=new MatOfRect();
+//                        mJavaDetection.detectMultiScale(grayMat1,faces1,1.1,3,0,new Size(mAbsoluteFaceSize1,mAbsoluteFaceSize1),new Size(grayMat1.width(),grayMat1.height()));
+//                        mJavaDetection.detectMultiScale(grayMat2,faces2,1.1,3,0,new Size(mAbsoluteFaceSize2,mAbsoluteFaceSize2),new Size(grayMat2.width(),grayMat2.height()));
+//                        mAbsoluteFaceSize1=0;
+//                        mAbsoluteFaceSize2=0;
+//                        Rect[] facesArray1=faces1.toArray();
+//                        Rect[] facesArray2=faces2.toArray();
+//                        for (Rect aFacesArray:facesArray1){
+//                            Imgproc.rectangle(rgbMat1, aFacesArray.tl(), aFacesArray.br(), FACE_RECT_COLOR, 3);
+//                            FaceUtil.saveImage(rgbMat1,aFacesArray,"face1");
+//                        }
+//                        for (Rect aFacesArray:facesArray2){
+//                            Imgproc.rectangle(rgbMat2, aFacesArray.tl(), aFacesArray.br(), FACE_RECT_COLOR, 3);
+//                            FaceUtil.saveImage(rgbMat2,aFacesArray,"face2");
+//                        }
+//                    }else {
+//                        Log.i(TAG, "onClick: 级联分类器为空");
+//                    }
+//                    Toast.makeText(this,"匹配率"+FaceUtil.compare("face1","face2"),Toast.LENGTH_SHORT).show();
+                    new Thread(){
+                        public void run(){
+                            Youtu faceYoutu=new Youtu(APP_ID,SECRET_ID,SECRET_KEY,Youtu.API_TENCENTYUN_END_POINT);
+                            try {
+                                JSONObject json=faceYoutu.FaceCompare(myBitMap1,myBitMap2);
+                                Log.i(TAG, "onClick: json数据"+json.toString());
+                                Looper.prepare();
+                                if(json.getInt("errorcode")!=0){
+                                    Toast.makeText(CompareActivity.this,"无法识别,请换一组试试",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(CompareActivity.this,"相似度:"+String.format("%.2f",json.getDouble("similarity")),Toast.LENGTH_SHORT).show();
+                                }
+                                Looper.loop();
+//                                if(myBitMap1!=null){
+//                                    myBitMap1.recycle();
+//                                }
+//                                if(myBitMap2!=null){
+//                                    myBitMap2.recycle();
+//                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (KeyManagementException e) {
+                                e.printStackTrace();
+                            } catch (NoSuchAlgorithmException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                    if(mAbsoluteFaceSize2==0){
-                        int height=grayMat1.rows();
-                        if(Math.round(height*mRelativeFaceSize)>0){
-                            mAbsoluteFaceSize2=Math.round(height*mRelativeFaceSize);
-                        }
-                    }
-                    if(mJavaDetection!=null){
-                        MatOfRect faces1=new MatOfRect();
-                        MatOfRect faces2=new MatOfRect();
-                        mJavaDetection.detectMultiScale(grayMat1,faces1,1.1,3,0,new Size(mAbsoluteFaceSize1,mAbsoluteFaceSize1),new Size(grayMat1.width(),grayMat1.height()));
-                        mJavaDetection.detectMultiScale(grayMat2,faces2,1.1,3,0,new Size(mAbsoluteFaceSize2,mAbsoluteFaceSize2),new Size(grayMat2.width(),grayMat2.height()));
-                        mAbsoluteFaceSize1=0;
-                        mAbsoluteFaceSize2=0;
-                        Rect[] facesArray1=faces1.toArray();
-                        Rect[] facesArray2=faces2.toArray();
-                        for (Rect aFacesArray:facesArray1){
-                            Imgproc.rectangle(rgbMat1, aFacesArray.tl(), aFacesArray.br(), FACE_RECT_COLOR, 3);
-                            FaceUtil.saveImage(rgbMat1,aFacesArray,"face1");
-                        }
-                        for (Rect aFacesArray:facesArray2){
-                            Imgproc.rectangle(rgbMat2, aFacesArray.tl(), aFacesArray.br(), FACE_RECT_COLOR, 3);
-                            FaceUtil.saveImage(rgbMat2,aFacesArray,"face2");
-                        }
-                    }else {
-                        Log.i(TAG, "onClick: 级联分类器为空");
-                    }
-                    Toast.makeText(this,"匹配率"+FaceUtil.compare("face1","face2"),Toast.LENGTH_SHORT).show();
+                    }.start();
                 }
                 break;
             }
