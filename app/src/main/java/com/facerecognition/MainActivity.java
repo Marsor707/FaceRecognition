@@ -99,6 +99,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
                 break;
             }
+            case 5:{
+                Intent intent=new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
+                break;
+            }
             default:break;
         }
     }
