@@ -18,7 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".MainActivity"
+        <activity android:name=".AboutUsActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +45,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".SearchResultActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".News2Activity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

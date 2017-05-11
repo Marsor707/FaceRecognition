@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:background="#F5F5F5">
+
+    <view.TitleLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        custom:title="News"
+        custom:backButtonVisible="false"
+        >
+    </view.TitleLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9">
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="谷歌Android Pay也做人脸识别"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:gravity="center_horizontal"
+                    android:text="2017年05月08日 11:34:30 作者：韩璐  来源：镁客网"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:text="        近日，有用户发现，谷歌的Android Pay支付系统已经集成了某种形式的人脸识别功能。具体上来讲，该用户通过反编译，发现Android Pay 1.22版本包含几个和其中Visual ID(视觉身份)功能相关的字符串。"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@mipmap/newsone"
+                    android:scaleType="fitStart"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:text="       不过，与一般我们所理解的不同，该项系统的人脸识别功能并不是用于个人的“刷脸”支付，而是用于对零售商的忠诚度进行认证。\n\n
+
+　　对此，谷歌方面表示，Visual ID用于确认参与活动的商店身份，使商店所有者可以更为轻松地会在赚取积分和兑换奖励等等。届时，用户可以在设置过程中创建脸部模板，一个视觉识别相继将拍摄照片并比较存储的模型以验证用户。\n\n
+
+　　与此同时，在隐私方面，谷歌也下了一番功夫，在这套系统中，商店所有者是无法访问所拍摄的图像的，而视觉识别相继也会在拍摄脸部照片之后不久即删除照片。\n\n
+
+　　Visual ID使用手机中的蓝牙和其他信号来检测用户的位置，当确认商店所有者身份之后，谷歌会将忠诚信息发送至商店，但不会与用户分享任何信息。当然，若不需要，用户也可以随时更改Android Pay设置来关闭Visual ID功能。相对于其他支付平台来讲，谷歌的Visual ID功能具备相当的独特性，对于商店所有者而言，这种人脸识别验证的方式为他们节省了不少的步骤。"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:background="#F5F5F5"
+    >
+
+    <view.TitleLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        custom:title="News"
+        custom:backButtonVisible="false"
+        >
+    </view.TitleLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_weight="8">
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/news1Click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/newsone"
+                    android:scaleType="fitStart"
+                    android:adjustViewBounds="true"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:src="@mipmap/newstwo"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitStart" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:src="@mipmap/newsthree"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitStart" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/news1Navigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

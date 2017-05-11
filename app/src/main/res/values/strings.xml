@@ -9,4 +9,9 @@
     <string name="keepMode">继续建模</string>
     <string name="startCamera">开始拍摄！</string>
     <string name="searchResult">搜索结果为：</string>
+    <string name="lch_intro">林成虹\n项目&#038;技术经理\n手机号码:\n17858964357\n电子邮箱:\n690060189@qq.com</string>
+    <string name="lzx_intro">林紫秀\nWeb前端开发&#038;测试工程师\n手机号码:\n17858964360\n电子邮箱:\n1627952745@qq.com</string>
+    <string name="cy_intro">陈彧\nUI设计组组长&#038;技术文档工程师\n手机号码:\n17858964376\n电子邮箱:\n769990323@qq.com</string>
+    <string name="cza_intro">陈子安\n客户关系经理&#038;Web后端开发工程师\n手机号码:\n17858964376\n电子邮箱:\n547272703@qq.com</string>
+    <string name="zdf_intro">周垤飞\nAndroid端开发&#038;测试工程师\n手机号码:\n17857090972\n电子邮箱:\n369135912@qq.com</string>
 </resources>

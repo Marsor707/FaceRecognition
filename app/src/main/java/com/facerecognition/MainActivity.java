@@ -26,7 +26,7 @@ import java.util.Arrays;
 import utils.GlideImageLoader;
 import utils.GridViewAdapter;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,BottomNavigationBar.OnTabSelectedListener{
 
     private Banner banner;
     private GridView gridView;
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                            .addItem(new BottomNavigationItem(R.mipmap.news,"News"))
                            .addItem(new BottomNavigationItem(R.mipmap.about,"About Us"))
                            .initialise();
+        bottomNavigationBar.setTabSelectedListener(this);
     }
 
     @Override
@@ -167,5 +168,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         Log.i(TAG, "setCameraDisplayOrientation: 调整了摄像头方向"+result);
         camera.setDisplayOrientation (result);
+    }
+
+    @Override
+    public void onTabSelected(int position) {
+
+    }
+
+    @Override
+    public void onTabUnselected(int position) {
+
+    }
+
+    @Override
+    public void onTabReselected(int position) {
+
     }
 }
