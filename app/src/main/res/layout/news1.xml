@@ -25,7 +25,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:layout_weight="8">
+        android:layout_weight="9">
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,9 +60,4 @@
         </ScrollView>
     </LinearLayout>
 
-    <com.ashokvarma.bottomnavigation.BottomNavigationBar
-        android:id="@+id/news1Navigation"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
 </LinearLayout>

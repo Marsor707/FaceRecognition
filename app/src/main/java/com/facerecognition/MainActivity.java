@@ -26,11 +26,10 @@ import java.util.Arrays;
 import utils.GlideImageLoader;
 import utils.GridViewAdapter;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,BottomNavigationBar.OnTabSelectedListener{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private Banner banner;
     private GridView gridView;
-    private BottomNavigationBar bottomNavigationBar;
     private GridViewAdapter adapter;
     private static final String TAG="MainActivity";
     private static final int REQUEST_CODE = 0;
@@ -69,12 +68,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(this);
         //底部导航栏
-        bottomNavigationBar= (BottomNavigationBar) findViewById(R.id.bottomNavigation);
-        bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.home,"Home"))
-                           .addItem(new BottomNavigationItem(R.mipmap.news,"News"))
-                           .addItem(new BottomNavigationItem(R.mipmap.about,"About Us"))
-                           .initialise();
-        bottomNavigationBar.setTabSelectedListener(this);
+//        bottomNavigationBar= (BottomNavigationBar) findViewById(R.id.bottomNavigation);
+//        bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.home,"Home"))
+//                           .addItem(new BottomNavigationItem(R.mipmap.news,"News"))
+//                           .addItem(new BottomNavigationItem(R.mipmap.about,"About Us"))
+//                           .initialise();
+//        bottomNavigationBar.setTabSelectedListener(this);
     }
 
     @Override
@@ -170,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         camera.setDisplayOrientation (result);
     }
 
+/*
     @Override
     public void onTabSelected(int position) {
 
@@ -184,4 +184,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onTabReselected(int position) {
 
     }
+*/
 }
