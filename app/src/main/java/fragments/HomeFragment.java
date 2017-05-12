@@ -4,8 +4,8 @@ import android.Manifest;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.UiThread;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +20,6 @@ import com.facerecognition.R;
 import com.facerecognition.SearchActivity;
 import com.facerecognition.TrackActivity;
 import com.youth.banner.Banner;
-import com.zhy.m.permission.MPermissions;
-import com.zhy.m.permission.PermissionDenied;
-import com.zhy.m.permission.PermissionGrant;
 
 import java.util.Arrays;
 
@@ -37,7 +34,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private Banner banner;
     private GridView gridView;
     private GridViewAdapter adapter;
+    private View mView;
     private static final String TAG="MainActivity";
+    /*
+    权限申请以分散至其他Activity
+     */
     private static final int REQUEST_CODE = 0;
     private static final String[] permissions={
             Manifest.permission.CAMERA,
@@ -50,20 +51,27 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+//        if(mView!=null){
+//            ViewGroup parent= (ViewGroup) mView.getParent();
+//            if(parent!=null){
+//                parent.removeView(mView);
+//            }
+//            return mView;
+//        }
         View view=inflater.inflate(R.layout.activity_main,container,false);
+        mView=view;
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         init();
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        //MPermissions.requestPermissions(getActivity(), REQUEST_CODE, permissions);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     private void init(){
@@ -122,22 +130,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         }
     }
 
-    //处理权限回调
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        MPermissions.onRequestPermissionsResult(getActivity(), requestCode, permissions, grantResults);
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
-    //授权成功
-    @PermissionGrant(REQUEST_CODE)
-    public void permissionSuccess() {
-        Log.i(TAG, "permissionSuccess: 授权成功");
-    }
-
-    //授权失败
-    @PermissionDenied(REQUEST_CODE)
-    public void permissionFail() {
-        Log.i(TAG, "permissionFail: 授权失败");
-    }
 }

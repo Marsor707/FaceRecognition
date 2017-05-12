@@ -35,6 +35,7 @@ public class HomePageActivity extends AppCompatActivity implements BottomNavigat
         navigation.addItem(new BottomNavigationItem(R.mipmap.home,"Home"))
                 .addItem(new BottomNavigationItem(R.mipmap.news,"News"))
                 .addItem(new BottomNavigationItem(R.mipmap.about,"About Us"))
+                .setFirstSelectedPosition(2)
                 .initialise();
         fragments=getFragments();
         setDefaultFragment();
@@ -44,7 +45,7 @@ public class HomePageActivity extends AppCompatActivity implements BottomNavigat
     private void setDefaultFragment(){
         FragmentManager fm=getFragmentManager();
         FragmentTransaction transaction=fm.beginTransaction();
-        transaction.replace(R.id.layFragment,HomeFragment.newInstance());
+        transaction.replace(R.id.layFragment,AboutUsFragment.newInstance());
         transaction.commit();
     }
 
