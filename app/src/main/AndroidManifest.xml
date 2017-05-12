@@ -13,7 +13,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
@@ -45,6 +45,12 @@
         <activity android:name=".SearchResultActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".News2Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DetectActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LiveDetectActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LiveDetectCameraActivity"
             android:screenOrientation="portrait"/>
 
     </application>

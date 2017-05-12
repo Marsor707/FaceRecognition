@@ -5,8 +5,6 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.UiThread;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +13,7 @@ import android.widget.GridView;
 
 import com.facerecognition.CaptureActivity;
 import com.facerecognition.CompareActivity;
+import com.facerecognition.DetectActivity;
 import com.facerecognition.ModeActivity;
 import com.facerecognition.R;
 import com.facerecognition.SearchActivity;
@@ -76,13 +75,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void init(){
         //图片轮播
-        banner= (Banner) getActivity().findViewById(R.id.banner);
+        banner= (Banner) getView().findViewById(R.id.banner);
         banner.setImageLoader(new GlideImageLoader());
         banner.setImages(Arrays.asList(bannerImages));
         banner.setDelayTime(5000);
         banner.start();
         //gridView
-        gridView= (GridView) getActivity().findViewById(R.id.gridView);
+        gridView= (GridView) getView().findViewById(R.id.gridView);
         adapter=new GridViewAdapter(getActivity(),gridImages,gridTexts);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(this);
@@ -113,6 +112,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             }
             case 2:{
                 Intent intent=new Intent(getActivity(),ModeActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case 3:{
+                Intent intent=new Intent(getActivity(), DetectActivity.class);
                 startActivity(intent);
                 break;
             }

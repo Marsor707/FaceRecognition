@@ -27,7 +27,7 @@ public class NewsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        news1Click= (ImageView) getActivity().findViewById(R.id.news1Click);
+        news1Click= (ImageView) getView().findViewById(R.id.news1Click);
         news1Click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
