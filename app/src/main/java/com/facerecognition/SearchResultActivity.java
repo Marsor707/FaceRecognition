@@ -39,9 +39,14 @@ public class SearchResultActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for(int i=0;i<5;i++){
-                    bitmaps[i]=ImageUtil.getURLBitMap("https://marsor707.github.io/assets/img/logo.png");
-                }
+//                for(int i=0;i<5;i++){
+//                    bitmaps[i]=ImageUtil.getURLBitMap("https://marsor707.github.io/assets/img/logo.png");
+//                }
+                bitmaps[0]= ImageUtil.getURLBitMap("http://face--recognition.oss-cn-shanghai.aliyuncs.com/dcy1.jpg");
+                bitmaps[1]= ImageUtil.getURLBitMap("http://face--recognition.oss-cn-shanghai.aliyuncs.com/dcy5.jpg");
+                bitmaps[2]= ImageUtil.getURLBitMap("http://face--recognition.oss-cn-shanghai.aliyuncs.com/dcy3.jpg");
+                bitmaps[3]= ImageUtil.getURLBitMap("http://face--recognition.oss-cn-shanghai.aliyuncs.com/dcy6.jpg");
+                bitmaps[4]= ImageUtil.getURLBitMap("http://face--recognition.oss-cn-shanghai.aliyuncs.com/dcy2.jpg");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
