@@ -1,6 +1,7 @@
 package com.facerecognition;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -73,6 +74,7 @@ public class ModeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (myBitMap != null) {
+                    final ProgressDialog progressDialog=ProgressDialog.show(ModeActivity.this,"提示","正在加载中",false);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -86,6 +88,8 @@ public class ModeActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         startActivity(intent);
+                                        addPhotoMode.setImageBitmap(null);
+                                        progressDialog.dismiss();
                                     }
                                 });
                             } catch (Exception e) {
