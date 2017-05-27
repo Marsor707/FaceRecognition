@@ -105,6 +105,8 @@ public class SearchFacesActivity extends AppCompatActivity {
                     }
                 }).start();
                 Intent intent=new Intent(SearchFacesActivity.this,SearchResultActivity.class);
+                //Log.i(TAG, "Public Url: "+finalUrl);
+                //intent.putExtra("resultUrl",finalUrl);
                 startActivity(intent);
             }
         });
