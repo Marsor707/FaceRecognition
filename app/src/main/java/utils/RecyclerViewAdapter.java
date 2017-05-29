@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facerecognition.R;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by marsor on 2017/5/10.
@@ -15,9 +18,11 @@ import com.facerecognition.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Bitmap[] bitmaps;
+    private int[] confidences;
 
-    public RecyclerViewAdapter(Bitmap[] bitmaps) {
+    public RecyclerViewAdapter(Bitmap[] bitmaps,int[] confidences) {
         this.bitmaps = bitmaps;
+        this.confidences=confidences;
     }
 
     @Override
@@ -30,6 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.image.setImageBitmap(bitmaps[position]);
+        holder.confidence.setText("相似度: "+confidences[position]+"%");
     }
 
     @Override
@@ -39,10 +45,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
+        TextView confidence;
 
         public ViewHolder(View itemView) {
             super(itemView);
             image= (ImageView) itemView.findViewById(R.id.image_result);
+            confidence= (TextView) itemView.findViewById(R.id.txt_confidence);
         }
     }
 }

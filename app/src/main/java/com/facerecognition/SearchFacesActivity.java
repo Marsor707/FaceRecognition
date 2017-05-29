@@ -97,17 +97,22 @@ public class SearchFacesActivity extends AppCompatActivity {
                     public void run() {
                         int ff = new PutObjectSamples(oss, testBucket, uploadObject, uploadFilePath).asyncPutObjectFromLocalFile();
                         // 但这里有个问题，为什么要摁两次upload从能打印出来Log.v中的url呢？？？
-                        if(ff == 200){
+                        //if(ff == 200){
                             // 如果上传成功的话，那么返回对应的图片的url
                             finalUrl = "http://face--recognition.oss-cn-shanghai.aliyuncs.com/"+uploadObject;
                             Log.v("Final Url--->", finalUrl);
-                        }
+                        //}
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent=new Intent(SearchFacesActivity.this,SearchResultActivity.class);
+                                Log.i(TAG, "Public Url: "+finalUrl);
+                                intent.putExtra("resultUrl",finalUrl);
+                                startActivity(intent);
+                            }
+                        });
                     }
                 }).start();
-                Intent intent=new Intent(SearchFacesActivity.this,SearchResultActivity.class);
-                //Log.i(TAG, "Public Url: "+finalUrl);
-                //intent.putExtra("resultUrl",finalUrl);
-                startActivity(intent);
             }
         });
     }
