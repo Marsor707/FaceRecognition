@@ -109,7 +109,7 @@ public class LiveDetectCameraActivity extends AppCompatActivity implements Surfa
         parameters.setPreviewFrameRate(20);
 
         //设置相机预览方向，模拟器上需注释掉
-        camera.setDisplayOrientation(90);
+        //camera.setDisplayOrientation(90);
 
         camera.setParameters(parameters);
         try {

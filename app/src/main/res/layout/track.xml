@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:text="@string/trackIntroduction"
             android:textSize="16dp"
+            android:textColor="#000000"
             />
 
         <Button

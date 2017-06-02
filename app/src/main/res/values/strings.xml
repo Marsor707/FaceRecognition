@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FaceRecognition</string>
+    <string name="app_name">ReKnow</string>
     <string name="trackIntroduction">人像跟踪\n\t\t\t是指利用人像捕获技术，当指定的人像在\n摄像头拍摄的范围内移动时自动地对其进行跟\n踪。\n\t\t\t现在请将摄像头对准人，并开启摄像头，我\n们将能够对人像进行跟踪。</string>
     <string name="searchIntroduction">人脸搜索\n\t\t\t是对指定的人像进行建模，并与数\n据库中的人脸相对比，最终返回五张最\n相似的人脸。</string>
     <string name="liveDetectIntroduction">活体检测\n\t\t\t系统可以识别得出摄像头前的人是一个真正的人还是一张照片，\n以此杜绝使用者用照片作假，\n此项技术需要使用者作脸部表情的配合动作\n</string>

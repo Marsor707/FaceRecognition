@@ -56,7 +56,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="20dp"
+                        android:textColor="#000000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -72,7 +73,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="20dp"
+                        android:textColor="#000000"/>
 
                     <View
                         android:layout_width="10px"
@@ -109,7 +111,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="20dp"
+                        android:textColor="#000000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -124,7 +127,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="20dp"
+                        android:textColor="#000000"/>
 
                     <View
                         android:layout_width="10px"
@@ -161,7 +165,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="20dp"
+                        android:textColor="#000000"/>
                 </LinearLayout>
             </LinearLayout>
 
